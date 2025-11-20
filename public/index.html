@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Movie Watch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">curated by tmdb</p>
+        <h1>My Movie Watch</h1>
+        <p class="subtitle">Smart, language-first movie picks tailored to your vibe.</p>
+      </div>
+      <button id="refreshButton" class="ghost-btn" aria-label="refresh recommendations">
+        ↻ Refresh
+      </button>
+    </header>
+
+    <section class="controls" aria-label="Preference selector">
+      <div class="control">
+        <label for="languageSelect">Preferred Language</label>
+        <select id="languageSelect">
+          <option value="en">English</option>
+          <option value="te">Telugu</option>
+          <option value="hi">Hindi</option>
+          <option value="ta">Tamil</option>
+          <option value="ml">Malayalam</option>
+          <option value="kn">Kannada</option>
+          <option value="ko">Korean</option>
+          <option value="ja">Japanese</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="genreSelect">Pick a Genre</label>
+        <select id="genreSelect">
+          <option value="surprise">Surprise Me</option>
+          <option value="romance">Romantic</option>
+          <option value="horror">Horror</option>
+          <option value="comedy">Comedy</option>
+          <option value="crime">Crime</option>
+          <option value="action">Action</option>
+          <option value="drama">Drama</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="adventure">Adventure</option>
+          <option value="family">Family</option>
+          <option value="animation">Animation</option>
+          <option value="sci-fi">Sci-Fi</option>
+          <option value="thriller">Thriller</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="ageSelect">Age Preference</label>
+        <select id="ageSelect">
+          <option value="all">All Ages</option>
+          <option value="18+">18+</option>
+        </select>
+      </div>
+
+      <button id="recommendButton" class="primary-btn">Get Recommendations</button>
+    </section>
+
+    <section id="statusPanel" class="status-panel" aria-live="polite" hidden>
+      <div id="statusMessage"></div>
+      <button id="retryButton" class="ghost-btn">Retry</button>
+    </section>
+
+    <section class="movies-section">
+      <div class="section-header">
+        <h2>Primary Picks</h2>
+        <span class="badge badge-info" id="sourceBadge">Verified</span>
+      </div>
+      <div id="primaryGrid" class="movie-grid"></div>
+    </section>
+
+    <section class="additional-section">
+      <div class="section-header">
+        <h2>Additional Picks</h2>
+        <p class="mini">Compact cards for quick skims.</p>
+      </div>
+      <div id="additionalRow" class="additional-row"></div>
+    </section>
+  </main>
+
+  <div id="movieModal" class="modal" aria-hidden="true">
+    <div class="modal-overlay" data-close-modal></div>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <template id="movieCardTemplate">
+    <article class="movie-card">
+      <div class="poster-wrap">
+        <img src="" alt="" loading="lazy">
+        <span class="badge badge-verified">Verified</span>
+      </div>
+      <div class="movie-info">
+        <div class="title-row">
+          <h3></h3>
+          <span class="year"></span>
+        </div>
+        <p class="meta"></p>
+        <p class="cast"></p>
+        <button class="ghost-btn small">More Details</button>
+      </div>
+    </article>
+  </template>
+
+  <template id="compactCardTemplate">
+    <div class="compact-card">
+      <div class="compact-main">
+        <p class="title"></p>
+        <p class="meta"></p>
+      </div>
+      <button class="ghost-btn mini">View</button>
+    </div>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+
+</html>
+
